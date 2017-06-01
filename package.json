@@ -1,0 +1,24 @@
+{
+  "name": "react-observer",
+  "version": "0.1.0",
+  "description": "React Component communication via events. With single observer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/juji/react-observer.git"
+  },
+  "keywords": [
+    "react-component-communication",
+    "react-observer",
+    "react-event"
+  ],
+  "author": "jujiyangasli@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juji/react-observer/issues"
+  },
+  "homepage": "https://github.com/juji/react-observer#readme"
+}
