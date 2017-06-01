@@ -1,4 +1,4 @@
-react-observer 
+react-event-observer
 ===
 
 An event manager in ReactJs, to handle communication between **components**. <br />
@@ -7,7 +7,7 @@ Using [observers](https://en.wikipedia.org/wiki/Observer_pattern) as a message-b
 Or you can use it for a general purpose event system.<br />
 
 ```
-npm install --save react-observer
+npm install --save react-event-observer
 ```
 
 Features
@@ -37,7 +37,7 @@ and monolithic..
 Initialize
 --
 ```js
-import ReactObserver from 'react-observer';
+import ReactObserver from 'react-event-observer';
 var observer = ReactObserver();
 ```
 
