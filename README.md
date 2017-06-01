@@ -23,7 +23,7 @@ You can think of it as a network between components.
 - client-server communication library
 - client-client communication library
 
-**Why?**
+**Why?**<br />
 Because passing down methods to child components cluters your code.
 ```bash
 and monolithic.. 
