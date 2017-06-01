@@ -6,6 +6,9 @@ Using [observers](https://en.wikipedia.org/wiki/Observer_pattern) as a message-b
 
 Or you can use it for a general purpose event system.<br />
 
+```
+npm install --save react-observer
+```
 
 Features
 --
@@ -29,15 +32,7 @@ Because passing down methods to child components cluters your code.
 and monolithic.. 
 ```
 
---
-
-Install
---
-```
-npm install --save react-observer
-```
-
---
+---
 
 Initialize
 --
@@ -82,7 +77,7 @@ observer.silence('what is three');
 
 ```
 
---
+---
 
 Usage Example
 --
@@ -168,6 +163,8 @@ hello event data: this is data
 hello event data: this is data
 attending: 2
 ```
+
+---
 
 Feature: event-namespace
 --
