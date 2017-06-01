@@ -108,6 +108,7 @@ class App extends Component {
 
 ### Subscribe / publish events
 In Child Components, start listening to events on mount. Don't forget to unsubscribe on unmount.
+
 **AppChild**
 ```js
 class AppChild extends Component{
@@ -134,6 +135,7 @@ class AppChild extends Component{
 ```
 
 `AppChildCounter` is where we will publish event or ask questions.
+
 **AppChildCounter**
 ```js
 class AppChildCounter extends Component{
