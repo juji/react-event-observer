@@ -81,9 +81,9 @@ observer.silence('what is three');
 
 Usage Example
 --
-Include react-observer in your Parent Component
+Include react-event-observer in your Parent Component
 ```js
-import ReactObserver from 'react-observer';
+import ReactObserver from 'react-event-observer';
 ```
 
 ### Initialize in parent
