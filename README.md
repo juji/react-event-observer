@@ -90,13 +90,13 @@ import ReactObserver from 'react-observer';
 Initialize in Parent constructor, and pass down to child components
 ```js
 class App extends Component {
-	constructor(props){
-	    super(props);
-	    this.observer = ReactObserver();
-	}
-	...
-	
-	render(){
+  constructor(props){
+      super(props);
+      this.observer = ReactObserver();
+  }
+  ...
+  
+  render(){
         <div>
             <AppChild observer=this.observer />
             <AppChild observer=this.observer />
