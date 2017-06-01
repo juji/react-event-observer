@@ -98,9 +98,9 @@ class App extends Component {
   
   render(){
         <div>
-            <AppChild observer=this.observer />
-            <AppChild observer=this.observer />
-            <AppChildCounter observer=this.observer />
+            <AppChild observer={this.observer} />
+            <AppChild observer={this.observer} />
+            <AppChildCounter observer={this.observer} />
         </div>
     }
 }
