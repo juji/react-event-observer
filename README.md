@@ -125,6 +125,12 @@ class AppChild extends Component{
         this.observer.respond("attendanceRoll",()=>{
             return 1;
         });
+
+        // you can return promise, for async calls
+        // everything with `.then` 
+        this.observer.respond("attendanceRoll",()=>{
+            return new Promise().resolve(1);
+        });
     }
 
     componentWillUnmount(){
@@ -163,7 +169,10 @@ Console
 
 hello event data: this is data
 hello event data: this is data
+attending: 1
 attending: 2
+attending: 3
+attending: 4
 ```
 
 ---

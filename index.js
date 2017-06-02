@@ -8,6 +8,7 @@ class EventSystem {
 		this.respond = this.respond.bind(this);
 		this.silence = this.silence.bind(this);
 		this.trigger = this.trigger.bind(this);
+		this.getEvents = this.getEvents.bind(this);
 
 		this.askprefix = '';
 		this.randomPrefix();
@@ -15,6 +16,21 @@ class EventSystem {
 
 	regRep(str){
 		return str.replace(/[-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+	}
+
+	/// get all event by name space
+	getEvents(str){
+
+		let r1 = new RegExp('^'+this.regRep(str)+'$');
+		let r2 = new RegExp('^'+this.regRep(str)+'\.');
+
+		var r = [];
+		for(var i in this.list)
+			if(i.match(r1) || i.match(r2)) 
+				r.push(i);
+
+		return r;
+
 	}
 
 	// random string
@@ -27,7 +43,6 @@ class EventSystem {
 	}
 
 	// create random prefix
-
 	randomPrefix(){
 		this.askprefix = this.randomString();
 	}
@@ -116,7 +131,12 @@ class EventSystem {
 		
 		var t = this;
 		this.on(this.askprefix+str,(uid)=>{
-			t.trigger(uid+this.askprefix+str,callback())
+			var f = callback();
+			if(typeof f.then === 'function')
+				f.then((data)=>{
+					t.trigger(uid+t.askprefix+str,data);
+				});
+			else t.trigger(uid+t.askprefix+str,f);
 		});
 
 	}
@@ -144,6 +164,7 @@ module.exports = function(){
 		trigger: event.trigger,
 		ask:event.ask,
 		respond:event.respond,
-		silence:event.silence
+		silence:event.silence,
+		getEvents:event.getEvents
 	}
 };
