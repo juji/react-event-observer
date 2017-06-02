@@ -66,8 +66,9 @@ observer.respond('what is three',()=>{
 });
 
 /* ask the question */
-observer.ask('what is three',(data)=>{
-    console.log('Three is a ' + (typeof data));
+observer.ask('what is three',(data,error)=>{
+    if(error) console.log('a error: '+e.stoString());
+    else console.log('Three is a ' + (typeof data));
 });
 // Three is a number
 
@@ -127,9 +128,14 @@ class AppChild extends Component{
         });
 
         // you can return promise, for async calls
-        // everything with `.then` 
+        // (everything with `.then` and `.catch`)
         this.observer.respond("attendanceRoll",()=>{
-            return new Promise().resolve(1);
+            return Promise.resolve(1);
+        });
+
+        // so, async is supported
+        this.observer.respond("attendanceRoll",async ()=>{
+            return await Promise.resolve(1);
         });
     }
 

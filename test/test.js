@@ -52,26 +52,10 @@ describe('publish',function(){
 
 describe('respond',function(){
 
-	it('should respond to question',function(){
+	it('should be able to respond to question',function(){
 
 		observer.respond('ask',()=>{
 			return 3;
-		});
-
-		return new Promise((res,rej)=>{
-			observer.ask('ask',(data)=>{
-				res (data);
-			});
-		}).then((d)=>{
-			d.should.equal(3);
-		});
-		
-	});
-
-	it('should respond to question asynchronously',function(){
-
-		observer.respond('ask',()=>{
-			return new Promise().resolve(3);
 		});
 
 		return new Promise((res,rej)=>{
@@ -82,6 +66,61 @@ describe('respond',function(){
 			d.should.equal(3);
 		});
 		
+	});
+
+	it('should be able to respond with promise',function(){
+
+		observer.respond('ask-promise',()=>{
+			return Promise.resolve(3);
+		});
+
+		return new Promise((res,rej)=>{
+			observer.ask('ask-promise',(data)=>{
+				res(data);
+			});
+		}).then((d)=>{
+			d.should.equal(3);
+		});
+		
 	});	
+
+
+	it('should be able to respond with async',function(){
+
+		observer.respond('ask-async', async ()=>{
+			return await Promise.resolve(3);
+		});
+
+		return new Promise((res,rej)=>{
+			observer.ask('ask-async',(data)=>{
+				res(data);
+			});
+		}).then((d)=>{
+			d.should.equal(3);
+		});
+		
+	});	
+
+
+	it('should be able to handle error',function(){
+
+		observer.respond('ask-error', async ()=>{
+			return await Promise.reject(new Error('some error'));
+		});
+
+		return new Promise((res,rej)=>{
+			observer.ask('ask-error',(data,err)=>{
+				if(!err) res(data);
+				else rej(err);
+			});
+		}).then((d)=>{
+			d.should.equal(3);
+		}).catch((e)=>{
+			e.should.be.an('error');
+		});
+		
+	});	
+
+	
 
 });

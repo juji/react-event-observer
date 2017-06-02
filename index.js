@@ -115,11 +115,15 @@ class EventSystem {
 		var uid = this.randomString();
 		var wait = false;
 		this.on(uid+this.askprefix+str,(data)=>{
-			callback(data);
+
+			if(!data.err) callback(data.data);
+			else callback(null,data.err);
+
 			if(wait) clearTimeout(wait);
 			wait = setTimeout(()=>{
 				this.off(uid+this.askprefix+str);
-			},10);
+			},100);
+
 		});
 		this.trigger(this.askprefix+str,uid);
 
@@ -131,12 +135,18 @@ class EventSystem {
 		
 		var t = this;
 		this.on(this.askprefix+str,(uid)=>{
+
 			var f = callback();
-			if(typeof f.then === 'function')
+
+			if(typeof f.then === 'function' && typeof f.catch === 'function' )
 				f.then((data)=>{
-					t.trigger(uid+t.askprefix+str,data);
+					t.trigger(uid+t.askprefix+str,{data:data,err:null});
+				}).catch((e)=>{
+					t.trigger(uid+t.askprefix+str,{data:null,err:e});
 				});
-			else t.trigger(uid+t.askprefix+str,f);
+
+			else t.trigger(uid+t.askprefix+str,{data:f,err:null});
+			
 		});
 
 	}
