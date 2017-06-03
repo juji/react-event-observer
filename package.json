@@ -1,10 +1,10 @@
 {
   "name": "react-event-observer",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "React Component communication via events. With single observer.",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,7 @@
   },
   "homepage": "https://github.com/juji/react-event-observer#readme",
   "devDependencies": {
-    "chai": "^4.0.1",
-    "mocha": "^3.4.2",
+    "jest": "^20.0.4",
     "unirest": "^0.5.1"
   }
 }

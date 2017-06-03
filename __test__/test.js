@@ -1,8 +1,5 @@
-var unirest = require('unirest');
 var Observer = require('../index.js');
-var chai = require('chai');
 
-var should = chai.should();
 var observer = Observer();
 
 //http://api.fixer.io/latest
@@ -18,7 +15,7 @@ describe('subscribe',function(){
 		});
 
 		var mainEvents = observer.getEvents('main');
-		mainEvents.length.should.equal(2);
+		expect(mainEvents.length).toBe(2);
 
 	});
 
@@ -26,7 +23,8 @@ describe('subscribe',function(){
 		observer.unsubscribe('main');
 
 		mainEvents = observer.getEvents('main');
-		mainEvents.length.should.equal(0);
+		expect(mainEvents.length).toBe(0);
+
 	});
 
 });
@@ -38,13 +36,9 @@ describe('publish',function(){
 		return new Promise((res,rej)=>{
 			observer.subscribe('main',(data)=>{
 				res(data);
-			});
+			})
 			observer.publish('main',1);	
-			//observer.unsubscribe('main');
-
-		}).then((data)=>{
-			data.should.equal(1);
-		});
+		}).then(data => expect(data).toBe(1));
 		
 	});
 
@@ -62,9 +56,7 @@ describe('respond',function(){
 			observer.ask('ask',(data)=>{
 				res(data);
 			});
-		}).then((d)=>{
-			d.should.equal(3);
-		});
+		}).then(data => expect(data).toBe(3));
 		
 	});
 
@@ -78,9 +70,7 @@ describe('respond',function(){
 			observer.ask('ask-promise',(data)=>{
 				res(data);
 			});
-		}).then((d)=>{
-			d.should.equal(3);
-		});
+		}).then(data => expect(data).toBe(3));
 		
 	});	
 
@@ -95,14 +85,14 @@ describe('respond',function(){
 			observer.ask('ask-async',(data)=>{
 				res(data);
 			});
-		}).then((d)=>{
-			d.should.equal(3);
-		});
+		}).then(data => expect(data).toBe(3));
 		
 	});	
 
 
 	it('should be able to handle error',function(){
+
+		expect.assertions(1);
 
 		observer.respond('ask-error', async ()=>{
 			return await Promise.reject(new Error('some error'));
@@ -110,14 +100,10 @@ describe('respond',function(){
 
 		return new Promise((res,rej)=>{
 			observer.ask('ask-error',(data,err)=>{
-				if(!err) res(data);
-				else rej(err);
+				if(err) rej(err);
+				else res(data);
 			});
-		}).then((d)=>{
-			d.should.equal(3);
-		}).catch((e)=>{
-			e.should.be.an('error');
-		});
+		}).catch(e => expect(e).toBeInstanceOf(Error));
 		
 	});	
 
