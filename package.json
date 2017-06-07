@@ -1,6 +1,6 @@
 {
   "name": "react-event-observer",
-  "version": "0.2.7",
+  "version": "0.3.7",
   "description": "React Component communication via events. With single observer.",
   "main": "index.js",
   "scripts": {
